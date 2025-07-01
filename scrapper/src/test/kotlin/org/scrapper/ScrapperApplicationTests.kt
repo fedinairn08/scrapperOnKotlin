@@ -1,13 +1,13 @@
-package com.scrapperOnKotlin
+package org.scrapper
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class ScrapperOnKotlinApplicationTests {
+class ScrapperApplicationTests {
 
-	@Test
-	fun contextLoads() {
-	}
+    @Test
+    fun contextLoads() {
+    }
 
 }

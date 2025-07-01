@@ -1,11 +1,11 @@
-package com.scrapperOnKotlin
+package org.scrapper
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ScrapperOnKotlinApplication
+class ScrapperApplication
 
 fun main(args: Array<String>) {
-	runApplication<ScrapperOnKotlinApplication>(*args)
+    runApplication<ScrapperApplication>(*args)
 }
