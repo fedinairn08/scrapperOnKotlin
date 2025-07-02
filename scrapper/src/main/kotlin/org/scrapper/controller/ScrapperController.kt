@@ -1,6 +1,5 @@
 package org.scrapper.controller
 
-import lombok.RequiredArgsConstructor
 import org.scrapper.dto.request.AddLinkRequest
 import org.scrapper.dto.response.LinkResponse
 import org.scrapper.dto.response.ListLinksResponse
