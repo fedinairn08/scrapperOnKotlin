@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component
 @RequiredArgsConstructor
 class CommandLineRunnerImpl(private val bot: Bot, private val messageHandler: MessageHandler): CommandLineRunner {
     override fun run(vararg args: String?) {
+        bot.registerCommands()
         bot.telegramBot.setUpdatesListener { updates ->
             for (update in updates) {
                 messageHandler.handleMessage(update)
