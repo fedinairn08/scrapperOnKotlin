@@ -1,7 +1,6 @@
-package org.scrapper.configuration
+package org.bot.configuration
 
 import jakarta.validation.constraints.NotNull
-import org.scrapper.dto.Scheduler
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.validation.annotation.Validated
 
@@ -12,5 +11,6 @@ data class ApplicationConfig(
         @field:NotNull
         var test: String,
 
-        var scheduler: Scheduler
+        @field:NotNull
+        var token: String
 )

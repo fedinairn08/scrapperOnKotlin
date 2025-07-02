@@ -36,6 +36,8 @@ dependencies {
     implementation(project(":link-parser"))
     implementation(project(":scrapper"))
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
+    implementation("com.github.pengrad:java-telegram-bot-api:8.3.0")
+    implementation("org.reflections:reflections:0.10.2")
 }
 
 kotlin {

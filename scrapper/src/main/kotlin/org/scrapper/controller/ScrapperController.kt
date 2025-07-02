@@ -1,5 +1,6 @@
 package org.scrapper.controller
 
+import lombok.RequiredArgsConstructor
 import org.scrapper.dto.request.AddLinkRequest
 import org.scrapper.dto.response.LinkResponse
 import org.scrapper.dto.response.ListLinksResponse
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 import java.net.URI
 
 @RestController
+@RequiredArgsConstructor
 class ScrapperController {
 
     @PostMapping("/tg-chat/{id}")
