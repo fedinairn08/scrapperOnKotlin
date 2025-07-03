@@ -41,6 +41,7 @@ dependencies {
     implementation("org.liquibase:liquibase-core:4.32.0")
     implementation("org.postgresql:postgresql:42.7.6")
     testImplementation("org.testcontainers:testcontainers:1.21.3")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 }
 
 kotlin {

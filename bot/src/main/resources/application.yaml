@@ -1,6 +1,13 @@
 spring:
   application:
     name: bot
+  datasource:
+    url: jdbc:postgresql://localhost:5432/scrapper
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: false
 
 springdoc:
   swagger-ui:
