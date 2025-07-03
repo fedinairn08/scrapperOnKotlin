@@ -33,6 +33,9 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("org.springframework.boot:spring-boot-starter-web:3.5.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly("org.springframework.boot:spring-boot-starter-test:3.5.0")
 }
 
 kotlin {
