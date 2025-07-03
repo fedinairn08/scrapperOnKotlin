@@ -6,6 +6,9 @@ spring:
   application:
     name: scrapper
 
+server:
+  port: 8081
+
 springdoc:
   swagger-ui:
     path: /swagger-ui

@@ -9,3 +9,6 @@ springdoc:
 app:
   test: test
   token: ${BOT_TOKEN}
+
+client:
+  scrapperBaseUrl: ${SCRAPPER_URL}

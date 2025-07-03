@@ -1,12 +1,10 @@
 package org.linkparser.service
 
-import java.util.regex.Pattern
 import org.linkparser.model.LinkParserResult
 import org.linkparser.model.StackOverflowResult
-import org.springframework.stereotype.Component
 import java.net.URI
+import java.util.regex.Pattern
 
-@Component
 class LinkParserStackOverflow : LinkParser() {
 
     private val stackOverflowPattern: Pattern = Pattern.compile("^/questions/(\\d+)/.*$")

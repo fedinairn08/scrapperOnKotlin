@@ -2,11 +2,9 @@ package org.linkparser.service
 
 import org.linkparser.model.GitHubResult
 import org.linkparser.model.LinkParserResult
-import org.springframework.stereotype.Component
 import java.net.URI
 import java.util.regex.Pattern
 
-@Component
 class LinkParserGitHub : LinkParser() {
 
     private val githubPattern: Pattern = Pattern.compile("^/([^/]+)/([^/]+)/?$")
