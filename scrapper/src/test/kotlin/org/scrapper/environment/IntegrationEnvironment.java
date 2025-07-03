@@ -5,10 +5,12 @@ import liquibase.LabelExpression;
 import liquibase.Liquibase;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
-import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.resource.DirectoryResourceAccessor;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -19,9 +21,11 @@ public abstract class IntegrationEnvironment {
 
     private static final String DB_PASSWORD = "root";
 
-    private static final String MIGRATIONS_PATH = "migrations/master.xml";
-
     private static final PostgreSQLContainer<?> POSTGRE_SQL_CONTAINER;
+
+    public static PostgreSQLContainer<?> getPostgreSQLContainer() {
+        return POSTGRE_SQL_CONTAINER;
+    }
 
     static {
         POSTGRE_SQL_CONTAINER = new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"))
@@ -40,9 +44,12 @@ public abstract class IntegrationEnvironment {
                 POSTGRE_SQL_CONTAINER.getUsername(),
                 POSTGRE_SQL_CONTAINER.getPassword()
         )) {
+            Path changeLogPath = new File(".").toPath().toAbsolutePath().getParent().getParent()
+                    .resolve("migrations");
+
             Liquibase liquibase = new Liquibase(
-                    MIGRATIONS_PATH,
-                    new ClassLoaderResourceAccessor(),
+                    "master.xml",
+                    new DirectoryResourceAccessor(changeLogPath),
                     DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection)));
 
             liquibase.update(new Contexts(), new LabelExpression());
