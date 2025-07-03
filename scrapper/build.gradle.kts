@@ -35,6 +35,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:3.5.3")
     implementation(project(":link-parser"))
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
+    testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("org.testcontainers:postgresql")
+    implementation("org.liquibase:liquibase-core:4.32.0")
+    implementation("org.postgresql:postgresql:42.7.6")
+    testImplementation("org.testcontainers:testcontainers:1.21.3")
 }
 
 kotlin {
