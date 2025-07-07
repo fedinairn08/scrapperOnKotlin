@@ -1,55 +1,53 @@
-package org.scrapper.integration;
+package org.scrapper.integration
 
-import org.junit.jupiter.api.Test;
-import org.scrapper.environment.IntegrationEnvironment;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Testcontainers;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
+import org.scrapper.environment.IntegrationEnvironment
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.jdbc.core.JdbcTemplate
+import org.springframework.test.context.DynamicPropertyRegistry
+import org.springframework.test.context.DynamicPropertySource
+import org.testcontainers.junit.jupiter.Testcontainers
+import java.sql.SQLException
 
 @SpringBootTest
 @Testcontainers
-public class IntegrationTests extends IntegrationEnvironment {
-    private static final PostgreSQLContainer<?> container = IntegrationEnvironment.getPostgreSQLContainer();
+class IntegrationTests(private val jdbcTemplate: JdbcTemplate): IntegrationEnvironment() {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    companion object {
+        private val container = IntegrationEnvironment.POSTGRE_SQL_CONTAINER
+    }
 
     @DynamicPropertySource
-    static void postgresqlProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", container::getJdbcUrl);
-        registry.add("spring.datasource.username", container::getUsername);
-        registry.add("spring.datasource.password", container::getPassword);
-        registry.add("spring.datasource.driver-class-name", () -> "org.postgresql.Driver");
+    fun postgresqlProperties(registry: DynamicPropertyRegistry) {
+        registry.add("spring.datasource.url") { container.jdbcUrl }
+        registry.add("spring.datasource.username") { container.username }
+        registry.add("spring.datasource.password") { container.password }
+        registry.add("spring.datasource.driver-class-name") { "org.postgresql.Driver" }
     }
 
     @Test
-    void postgresqlTest() {
-        try (Connection conn = container.createConnection("")) {
-            var stmt = conn.createStatement();
-            var rs = stmt.executeQuery(
-                    "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public'");
-            assertThat(rs.next()).isTrue();
-            assertThat(rs.getInt(1)).isGreaterThan(0);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    fun postgresqlTest() {
+        try {
+            container.createConnection("").use { conn ->
+                val stmt = conn.createStatement()
+                val rs = stmt!!.executeQuery(
+                    "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public'"
+                )
+                Assertions.assertThat(rs!!.next()).isTrue()
+                Assertions.assertThat(rs.getInt(1)).isGreaterThan(0)
+            }
+        } catch (e: SQLException) {
+            throw RuntimeException(e)
         }
 
-        Long id = 1L;
-        Long chatId = 123L;
-        jdbcTemplate.update("INSERT INTO chat VALUES (?, ?)", id, chatId);
+        val id = 1L
+        val chatId = 123L
+        jdbcTemplate.update("INSERT INTO chat VALUES (?, ?)", id, chatId)
 
-        var result = jdbcTemplate.queryForList("SELECT * FROM chat");
-        assertThat(result).isNotEmpty();
-        assertThat(result.get(0).get("id")).isEqualTo(id);
-        assertThat(result.get(0).get("chat_id")).isEqualTo(chatId);
+        val result = jdbcTemplate.queryForList("SELECT * FROM chat")
+        Assertions.assertThat(result).isNotEmpty()
+        Assertions.assertThat(result[0]!!["id"]).isEqualTo(id)
+        Assertions.assertThat(result[0]!!["chat_id"]).isEqualTo(chatId)
     }
 }
