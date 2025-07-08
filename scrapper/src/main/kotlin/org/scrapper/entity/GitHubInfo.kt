@@ -12,7 +12,7 @@ import lombok.experimental.Accessors
 @Accessors(chain = true)
 @NoArgsConstructor
 @Table(name = "gitHubInfo")
-class GitHubInfo {
+class GitHubInfo() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gitHubInfo_seq")
@@ -30,7 +30,7 @@ class GitHubInfo {
     @JoinColumn(name = "link_id")
     var link: Link? = null
 
-    constructor(id: Long?, lastCommitCount: Int, lastBranchCount: Int, link: Link?) {
+    constructor(id: Long?, lastCommitCount: Int, lastBranchCount: Int, link: Link?) : this() {
         this.id = id
         this.lastCommitCount = lastCommitCount
         this.lastBranchCount = lastBranchCount
