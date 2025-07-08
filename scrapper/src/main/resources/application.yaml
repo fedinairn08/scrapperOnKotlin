@@ -24,4 +24,9 @@ client:
   githubBaseUrl: https://api.github.com
   stackoverflowBaseUrl: https://api.stackexchange.com/2.3
 
+api:
+  github:
+    token: ${GITHUB_TOKEN}
 
+scheduler:
+  update: 86400000 # 1 день
