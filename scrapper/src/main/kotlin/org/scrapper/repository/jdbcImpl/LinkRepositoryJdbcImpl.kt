@@ -7,7 +7,6 @@ import org.scrapper.repository.LinkRepository
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.jdbc.support.KeyHolder
-import org.springframework.stereotype.Repository
 import java.net.URI
 import java.net.URISyntaxException
 import java.sql.Connection
@@ -15,7 +14,6 @@ import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Timestamp
 
-@Repository
 @RequiredArgsConstructor
 class LinkRepositoryJdbcImpl(private val jdbcTemplate: JdbcTemplate): LinkRepository{
     override fun save(link: Link): Link {

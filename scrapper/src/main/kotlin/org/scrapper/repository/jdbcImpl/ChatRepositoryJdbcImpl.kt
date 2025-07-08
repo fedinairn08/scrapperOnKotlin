@@ -9,14 +9,12 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.ResultSetExtractor
 import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.jdbc.support.KeyHolder
-import org.springframework.stereotype.Repository
 import java.net.URI
 import java.sql.Connection
 import java.sql.ResultSet
 import java.util.*
 
 @RequiredArgsConstructor
-@Repository
 class ChatRepositoryJdbcImpl(private val jdbcTemplate: JdbcTemplate): ChatRepository {
 
     override fun save(chat: Chat): Chat {

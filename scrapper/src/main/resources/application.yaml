@@ -1,6 +1,8 @@
 app:
   scheduler:
     interval: PT60S  # 1 минута
+  database-access-type:
+    jdbc
 
 spring:
   application:

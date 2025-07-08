@@ -5,9 +5,7 @@ import org.scrapper.entity.GitHubInfo
 import org.scrapper.entity.Link
 import org.scrapper.repository.GitHubInfoRepository
 import org.scrapper.service.GitHubInfoService
-import org.springframework.stereotype.Service
 
-@Service
 @RequiredArgsConstructor
 class JdbcGitHubInfoService(private val gitHubInfoRepository: GitHubInfoRepository): GitHubInfoService {
     override fun add(link: Link) {

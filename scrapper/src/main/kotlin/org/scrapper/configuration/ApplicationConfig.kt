@@ -2,6 +2,7 @@ package org.scrapper.configuration
 
 import jakarta.validation.constraints.NotNull
 import org.scrapper.dto.Scheduler
+import org.scrapper.enums.AccessType
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.validation.annotation.Validated
 
@@ -12,5 +13,7 @@ data class ApplicationConfig(
         @field:NotNull
         var test: String,
 
-        var scheduler: Scheduler
+        var scheduler: Scheduler,
+
+        var databaseAccessType: AccessType
 )

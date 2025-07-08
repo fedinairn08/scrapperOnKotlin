@@ -5,11 +5,9 @@ import org.scrapper.entity.Link
 import org.scrapper.repository.LinkRepository
 import org.scrapper.service.ChatService
 import org.scrapper.service.LinkService
-import org.springframework.stereotype.Service
 import java.net.URI
 import java.sql.Timestamp
 
-@Service
 @RequiredArgsConstructor
 class JdbcLinkService(private val linkRepository: LinkRepository, private val chatService: ChatService): LinkService {
     override fun add(tgChatId: Long, url: URI): Link {

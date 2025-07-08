@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor
 import org.scrapper.entity.Chat
 import org.scrapper.repository.ChatRepository
 import org.scrapper.service.ChatService
-import org.springframework.stereotype.Service
 import java.util.*
 
-@Service
 @RequiredArgsConstructor
 class JdbcChatService(private val chatRepository: ChatRepository): ChatService {
     override fun register(chatId: Long) {
