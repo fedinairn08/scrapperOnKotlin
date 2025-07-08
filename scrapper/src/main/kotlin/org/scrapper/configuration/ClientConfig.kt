@@ -8,5 +8,7 @@ import org.springframework.validation.annotation.Validated
 data class ClientConfig(
         val githubBaseUrl: String,
 
-        val stackoverflowBaseUrl: String
+        val stackoverflowBaseUrl: String,
+
+        val botBaseUrl: String
 )
