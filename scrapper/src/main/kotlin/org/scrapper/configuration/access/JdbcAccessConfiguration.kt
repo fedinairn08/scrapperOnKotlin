@@ -1,4 +1,4 @@
-package org.bot.configuration.access
+package org.scrapper.configuration.access
 
 import org.scrapper.repository.ChatRepository
 import org.scrapper.repository.GitHubInfoRepository
