@@ -8,6 +8,18 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     enabled: false
+  rabbitmq:
+    host: ${RABBIT_HOST}
+    username: guest
+    password: guest
+    port: 5672
+    listener:
+      simple:
+        default-requeue-rejected: false
+
+rabbit:
+  queue: scrapper-queue
+  exchange: scrapper-exchange
 
 springdoc:
   swagger-ui:

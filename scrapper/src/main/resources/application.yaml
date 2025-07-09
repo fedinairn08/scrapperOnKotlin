@@ -28,6 +28,15 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  rabbitmq:
+    host: ${RABBIT_HOST}
+    username: guest
+    password: guest
+    port: 5672
+
+rabbit:
+  queue: scrapper-queue
+  exchange: scrapper-exchange
 
 server:
   port: 8081
