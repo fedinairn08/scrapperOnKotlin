@@ -15,5 +15,7 @@ data class ApplicationConfig(
 
         var scheduler: Scheduler,
 
-        var databaseAccessType: AccessType
+        var databaseAccessType: AccessType,
+
+        var useQueue: Boolean
 )
