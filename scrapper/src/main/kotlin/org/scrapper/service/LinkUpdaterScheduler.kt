@@ -28,7 +28,7 @@ class LinkUpdaterScheduler(
     private var timeLinkUpdate: Int
 ) {
 
-    @Scheduled(fixedDelayString = "#{@scheduler.interval().toMillis()}")
+    @Scheduled(fixedDelayString = "#{@scheduler.interval.toMillis()}")
     fun update() {
         val links: List<Link> = linkService.findAllOutdatedLinks(Timestamp(System.currentTimeMillis() - timeLinkUpdate))
         updateLinks(links)

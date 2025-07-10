@@ -2,7 +2,7 @@ spring:
   application:
     name: bot
   datasource:
-    url: jdbc:postgresql://localhost:5432/scrapper
+    url: jdbc:postgresql://localhost:5434/scrapper
     username: root
     password: root
     driver-class-name: org.postgresql.Driver

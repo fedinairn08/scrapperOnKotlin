@@ -11,7 +11,7 @@ spring:
   liquibase:
     enabled: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/scrapper
+    url: jdbc:postgresql://localhost:5434/scrapper
     username: root
     password: root
     driver-class-name: org.postgresql.Driver
@@ -49,6 +49,7 @@ springdoc:
 client:
   githubBaseUrl: https://api.github.com
   stackoverflowBaseUrl: https://api.stackexchange.com/2.3
+  botBaseUrl: http://localhost:8080
 
 api:
   github:

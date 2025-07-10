@@ -42,8 +42,6 @@ dependencies {
     implementation("org.postgresql:postgresql:42.7.6")
     testImplementation("org.testcontainers:testcontainers:1.21.3")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.mapstruct:mapstruct:1.6.3")
-    implementation("org.mapstruct:mapstruct-processor:1.6.3")
     implementation ("org.reflections:reflections:0.10.2")
     implementation("org.springframework.boot:spring-boot-starter-amqp:3.5.0")
 }

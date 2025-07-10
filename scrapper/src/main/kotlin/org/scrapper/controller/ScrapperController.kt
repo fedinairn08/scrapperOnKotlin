@@ -34,14 +34,14 @@ class ScrapperController(
     @GetMapping("/links")
     fun getLinks(@RequestHeader("Tg-Chat-Id") tgChatId: Long): ResponseEntity<ListLinksResponse> {
         val links: List<Link> = linkService.listAll(tgChatId)
-        return ResponseEntity.ok(linkMapper.toListLinksResponse(links))
+        return ResponseEntity.ok(linkMapper.convertListLinkToListLinksResponse(links))
     }
 
     @PostMapping("/links")
     fun addLink(@RequestHeader("Tg-Chat-Id") tgChatId: Long,
                 @RequestBody request: AddLinkRequest): ResponseEntity<LinkResponse> {
         val link = linkService.add(tgChatId, request.link)
-        return ResponseEntity.ok(linkMapper.toLinkResponse(link))
+        return ResponseEntity.ok(linkMapper.convertLinkToLinkResponse(link))
     }
 
     @DeleteMapping("/links/delete")

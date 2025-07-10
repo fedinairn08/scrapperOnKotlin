@@ -1,19 +1,24 @@
 package org.scrapper.mapper
 
-import org.mapstruct.Mapper
 import org.scrapper.dto.response.LinkResponse
 import org.scrapper.dto.response.ListLinksResponse
 import org.scrapper.entity.Link
+import org.springframework.stereotype.Component
 
-@Mapper(componentModel = "spring")
-interface LinkMapper {
 
-    fun toLinkResponse(link: Link): LinkResponse
+@Component
+class LinkMapper {
 
-    fun toListLinksResponse(links: List<Link>): ListLinksResponse {
+    fun convertLinkToLinkResponse(link: Link): LinkResponse {
+        return LinkResponse(link.id!!, link.url!!)
+    }
 
-        val responses = links.map { toLinkResponse(it) }
-
-        return ListLinksResponse(responses, responses.size)
+    fun convertListLinkToListLinksResponse(links: List<Link>): ListLinksResponse {
+        return ListLinksResponse(
+            links.stream()
+                .map(this::convertLinkToLinkResponse)
+                .toList(),
+            links.size
+        )
     }
 }
