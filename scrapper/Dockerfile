@@ -2,7 +2,7 @@ FROM gradle:8.4-jdk21-alpine AS builder
 
 WORKDIR /app
 
-COPY build.gradle.kts settings.gradle ./
+COPY build.gradle.kts settings.gradle.kts ./
 COPY gradle ./gradle
 COPY scrapper ./scrapper
 COPY link-parser ./link-parser
