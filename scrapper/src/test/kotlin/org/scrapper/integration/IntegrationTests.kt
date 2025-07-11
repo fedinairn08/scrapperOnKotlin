@@ -3,6 +3,7 @@ package org.scrapper.integration
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.scrapper.environment.IntegrationEnvironment
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.DynamicPropertyRegistry
@@ -12,18 +13,22 @@ import java.sql.SQLException
 
 @SpringBootTest
 @Testcontainers
-class IntegrationTests(private val jdbcTemplate: JdbcTemplate): IntegrationEnvironment() {
+class IntegrationTests: IntegrationEnvironment() {
+
+    @Autowired
+    private lateinit var jdbcTemplate: JdbcTemplate
 
     companion object {
         private val container = IntegrationEnvironment.POSTGRE_SQL_CONTAINER
-    }
 
-    @DynamicPropertySource
-    fun postgresqlProperties(registry: DynamicPropertyRegistry) {
-        registry.add("spring.datasource.url") { container.jdbcUrl }
-        registry.add("spring.datasource.username") { container.username }
-        registry.add("spring.datasource.password") { container.password }
-        registry.add("spring.datasource.driver-class-name") { "org.postgresql.Driver" }
+        @JvmStatic
+        @DynamicPropertySource
+        fun postgresqlProperties(registry: DynamicPropertyRegistry) {
+            registry.add("spring.datasource.url") { container.jdbcUrl }
+            registry.add("spring.datasource.username") { container.username }
+            registry.add("spring.datasource.password") { container.password }
+            registry.add("spring.datasource.driver-class-name") { "org.postgresql.Driver" }
+        }
     }
 
     @Test
