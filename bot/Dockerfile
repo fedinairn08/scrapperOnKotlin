@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-focal AS builder
+FROM gradle:8.4-jdk17-focal AS builder
 
 WORKDIR /app
 
