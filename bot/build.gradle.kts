@@ -3,6 +3,18 @@ plugins {
     kotlin("plugin.spring") version "1.9.25"
     id("org.springframework.boot") version "3.5.3"
     id("io.spring.dependency-management") version "1.1.7"
+    id("checkstyle")
+}
+
+checkstyle {
+    isIgnoreFailures = true
+    val checkstyleTasks = tasks.withType<Checkstyle>()
+    checkstyleTasks.configureEach {
+        reports {
+            xml.required.set(false)
+            html.required.set(true)
+        }
+    }
 }
 
 group = "org"
@@ -40,6 +52,7 @@ dependencies {
     implementation("com.github.pengrad:java-telegram-bot-api:8.3.0")
     implementation("org.reflections:reflections:0.10.2")
     implementation("org.springframework.boot:spring-boot-starter-amqp:3.5.0")
+    implementation("org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0")
 }
 
 kotlin {
