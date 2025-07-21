@@ -31,3 +31,32 @@ app:
 
 client:
   scrapperBaseUrl: ${SCRAPPER_URL}
+
+management:
+    metrics:
+        tags:
+            application: ${spring.application.name}
+    server:
+        port: 8090
+    endpoints:
+        web:
+            base-path: /
+            path-mapping:
+                prometheus: /metrics
+            exposure:
+                include: "*"
+        enabled-by-default: false
+
+    endpoint:
+        info:
+            enabled: true
+        health:
+            enabled: true
+        metrics:
+            enabled: true
+        prometheus:
+            enabled: true
+    prometheus:
+        metrics:
+            export:
+                enabled: true

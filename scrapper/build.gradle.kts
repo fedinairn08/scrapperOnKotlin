@@ -57,6 +57,9 @@ dependencies {
     implementation ("org.reflections:reflections:0.10.2")
     implementation("org.springframework.boot:spring-boot-starter-amqp:3.5.0")
     implementation("org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0")
+    implementation("org.springframework.boot:spring-boot-starter-actuator:3.5.3")
+    implementation("io.micrometer:micrometer-registry-prometheus:1.15.1")
+    implementation("io.micrometer:micrometer-tracing-bridge-brave:1.5.1")
 }
 
 kotlin {
